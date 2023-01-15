@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  creationTimestamp: "2023-01-15T12:51:26Z"
+  generateName: home-cluster-5f9bfc4586-
+
+  # this label is set by the deployments template.metadata.labels and matches the selector.matchLabels which the deployment uses to identify the pods it's managing
+  labels:
+    app: home-cluster
+    pod-template-hash: 5f9bfc4586
+  name: home-cluster-5f9bfc4586-j97lw
+  namespace: default
+  ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: home-cluster-5f9bfc4586
+      uid: 5f148f6f-04f2-4124-b389-44fa3da7c2d7
+  resourceVersion: "128436"
+  uid: 18950b32-4c96-480c-93d0-0c8a026a5591
+
+spec:
+  # defines the container in this pod, it's container image and port it is exposed on as defined by the deployment
+  containers:
+    - image: public.ecr.aws/w1c0p5q4/home-cluster:latest
+      imagePullPolicy: Always
+      name: home-cluster
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: kube-api-access-9g7bd
+          readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: minikube
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  volumes:
+    - name: kube-api-access-9g7bd
+      projected:
+        defaultMode: 420
+        sources:
+          - serviceAccountToken:
+              expirationSeconds: 3607
+              path: token
+          - configMap:
+              items:
+                - key: ca.crt
+                  path: ca.crt
+              name: kube-root-ca.crt
+          - downwardAPI:
+              items:
+                - fieldRef:
+                    apiVersion: v1
+                    fieldPath: metadata.namespace
+                  path: namespace
+status:
+  conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2023-01-15T12:51:26Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2023-01-15T12:51:29Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2023-01-15T12:51:29Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2023-01-15T12:51:26Z"
+      status: "True"
+      type: PodScheduled
+  containerStatuses:
+    - containerID: docker://f2c5ef1d168cfe727a0111b35663642e93e105bddbdbe2f3b85c5b3dd8dd6aaf
+      image: public.ecr.aws/w1c0p5q4/home-cluster:latest
+      imageID: docker-pullable://public.ecr.aws/w1c0p5q4/home-cluster@sha256:44ce50feb6093dfbc9405cf12a70e5598414e8c488cf6355879543572b5cdf05
+      lastState: {}
+      name: home-cluster
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2023-01-15T12:51:28Z"
+  hostIP: 192.168.59.102
+  phase: Running
+  podIP: 172.17.0.6
+  podIPs:
+    - ip: 172.17.0.6
+  qosClass: BestEffort
+  startTime: "2023-01-15T12:51:26Z"

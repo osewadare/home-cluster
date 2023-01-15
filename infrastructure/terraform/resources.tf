@@ -15,17 +15,30 @@ resource "aws_s3_bucket_acl" "example" {
 
 
 #kubernetes resources
-resource "kubernetes_namespace" "cache" {
+/*resource "kubernetes_namespace" "cache" {
   metadata {
     name = "cache"
   }
-}
+}*/
+
+/*resource "kubernetes_namespace" "home-assistant" {
+  metadata {
+    name = "home-assistant"
+  }
+}*/
 
 #helm resources 
-resource "helm_release" "redis-helm" {
+/*resource "helm_release" "redis-helm" {
   name       = "redis-helm"
   namespace  = kubernetes_namespace.cache.metadata.0.name
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "redis"
 
-}
+}*/
+
+/*resource "helm_release" "home-assistant-helm" {
+  name       = "home-assistant-helm"
+  namespace  = kubernetes_namespace.home-assistant.metadata.0.name
+  repository = "https://helm.samipsolutions.fi/"
+  chart      = "home-assistant"
+}*/

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+
+# 1- metadata of this service
+metadata:
+  creationTimestamp: "2023-01-15T13:47:38Z"
+  labels:
+    app: home-cluster
+  name: home-cluster
+  namespace: default
+  resourceVersion: "130810"
+  uid: 797485df-1b67-4b11-ade1-949206985285
+
+#2 - spec of this service
+spec:
+  #2a - virutal ip address created to load balance requests to this service. this requests are spread across the pods managed by the deployment exposed by this service
+  clusterIP: 10.97.75.228
+  clusterIPs:
+    - 10.97.75.228
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+
+  #ports of containers accessible via this service
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: home-cluster
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

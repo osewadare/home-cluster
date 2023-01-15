@@ -1,0 +1,22 @@
+{
+  "name": "home-cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osewadare/home-cluster.git"
+  },
+  "author": "Dare Osewa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osewadare/home-cluster/issues"
+  },
+  "homepage": "https://github.com/osewadare/home-cluster#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
